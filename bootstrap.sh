@@ -68,51 +68,18 @@ ln -s $GITDIR/engineAPI-Modules/src/modules/* $GITDIR/engineAPI/engine/engineAPI
 ln -s $GITDIR/engineAPI/engine/ $SERVERURL/phpincludes/ #All required modules are linked in phpincludes
 echo -e "----Modules have been loaded----\n\n"
 
-## Application configuarations
-#mkdir -p $SERVERURL/$DOCUMENTROOT/app
+#APP Specific
+##Link your src folder
+rm -f /var/www/html/*
+ln -s /vagrant/src/* /var/www/html/
 
-#ln -s /vagrant/src/ $SERVERURL/$SITEROOT
-#ln -s $SERVERURL/phpincludes/engine/engineAPI/latest $SERVERURL/phpincludes/engine/engineAPI/4.0
+## Remove the existing config
+rm -f /etc/httpd/conf/httpd.conf
 
-#rm -f /etc/php.ini
-#rm -f /etc/httpd/conf/httpd.conf
+##Link config
+ln -s /vagrant/serverConfiguration/httpd.conf /etc/httpd/conf/httpd.conf
 
-#ln -s /vagrant/serverConfiguration/php.ini /etc/php.ini
-#ln -s /vagrant/serverConfiguration/vagrant_httpd.conf /etc/httpd/conf/httpd.conf
-
-#mkdir -p /vagrant/serverConfiguration/serverlogs
-#touch /vagrant/serverConfiguration/serverlogs/error_log
-#systemctl httpd restart
-
-#mkdir -p $SERVERURL/phpincludes/databaseConnectors/
-
-#ln -s /vagrant/serverConfiguration/database.lib.wvu.edu.remote.php $SERVERURL/phpincludes/databaseConnectors/database.lib.wvu.edu.remote.php
-#echo -e "----Application configurations have been set----\n\n"
-
-## Templates are loaded here
-#mkdir -p $GITDIR/engineAPITemplates/library2012.2col/templateIncludes
-#ln -s /vagrant/serverConfiguration/templateHeader.php $GITDIR/engineAPITemplates/library2012.2col/templateIncludes/templateHeader.php
-#ln -s /vagrant/serverConfiguration/templateFooter.php $GITDIR/engineAPITemplates/library2012.2col/templateIncludes/templateFooter.php
-#ln -s $GITDIR/engineAPITemplates/library2012.1col/templateIncludes/2colHeaderIncludes.php $GITDIR/engineAPITemplates/library2012.2col/templateIncludes/2colHeaderIncludes.php
-
-#mkdir -p $GITDIR/engineAPITemplates/library2012.3col/templateIncludes
-#ln -s /vagrant/serverConfiguration/templateHeader.php $GITDIR/engineAPITemplates/library2012.3col/templateIncludes/templateHeader.php
-#ln -s /vagrant/serverConfiguration/templateFooter.php $GITDIR/engineAPITemplates/library2012.3col/templateIncludes/templateFooter.php
-#ln -s $GITDIR/engineAPITemplates/library2012.1col/templateIncludes/3colHeaderIncludes.php $GITDIR/engineAPITemplates/library2012.3col/templateIncludes/3colHeaderIncludes.php
-#echo -e "----Templates loaded----\n\n"
-
-## Favicon
-#touch /home/www.libraries.wvu.edu/public_html/favicon.ico
-#echo -e "----Favicon loaded----\n\n"
-
-## Base Post Setup
-#ln -s $SERVERURL $ENGINEAPIHOME
-#ln -s $GITDIR/engineAPI/public_html/engineIncludes/ $SERVERURL/$DOCUMENTROOT/engineIncludes
-#echo -e "----Base post setup done----\n\n"
-
-## Setup the EngineAPI Database
-#/etc/init.d/mysqld start
-#chkconfig mysqld on
-#mysql -u root < /tmp/git/engineAPI/sql/vagrantSetup.sql
-#mysql -u root EngineAPI < /tmp/git/engineAPI/sql/EngineAPI.sql
-#echo -e "----Mysql stuff done----\n\n"
+##Make the logs
+mkdir -p /vagrant/serverConfiguration/serverlogs
+touch /vagrant/serverConfiguration/serverlogs/error_log
+systemctl restart httpd
