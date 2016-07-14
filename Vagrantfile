@@ -13,6 +13,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # Every Vagrant virtual environment requires a box to build off of.
     config.vm.box = "bento/centos-7.2"
+
+    # Every Vagrant virtual environment requires a box to build off of.
+    #config.vm.box = "centos6.4"
+
+    # The url from where the 'config.vm.box' box will be fetched if it
+    # doesn't already exist on the user's system.
+    #config.vm.box_url = "https://github.com/2creatives/vagrant-centos/releases/download/v0.1.0/centos64-x86_64-20131030.box"
+
     config.vm.network "private_network", ip: "192.168.33.10"
     config.vm.network :forwarded_port, guest: 80, host: 8056
     config.vm.network :forwarded_port, guest: 10000, host: 10001

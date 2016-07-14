@@ -1,0 +1,35 @@
+# Logs and databases
+####################
+*.log
+*.sqlite
+
+# OS generated files
+####################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
+
+# Dreamweaver stuff
+###################
+_notes
+dwsync.xml
+
+# JetBrains IDE stuff
+#####################
+.idea
+
+# phpDocumentor developer config file
+#####################################
+phpdoc.xml
+
+# Vagrant Ignores
+#################
+/serverConfiguration/serverLogs/
+/.vagrant/
+sessionLogin.php
+4.0

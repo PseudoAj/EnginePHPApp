@@ -37,6 +37,10 @@ echo -e "----Installed Auth Plugins for MySQL----\n\n"
 yum -y install php56w php56w-bcmath php56w-cli php56w-common php56w-gd php56w-ldap php56w-mbstring php56w-mcrypt php56w-mysql php56w-odbc php56w-pdo php56w-pear php56w-pear-Benchmark php56w-pecl-apc php56w-pecl-imagick php56w-pecl-memcache php56w-soap php56w-xml php56w-xmlrpc
 echo -e "----Installed PHP 5.6----\n\n"
 
+#echo "Installing php"
+#yum -y install php php-bcmath php-cli php-common php-gd php-ldap php-mbstring php-mcrypt php-mysql php-odbc php-pdo php-pear php-pear-Benchmark php-pecl-apc php-pecl-imagick php-pecl-memcache php-soap php-xml php-xmlrpc
+
+yum -y install wget
 wget -c https://phar.phpunit.de/phpunit.phar
 chmod +x phpunit.phar
 mv phpunit.phar /usr/local/bin/phpunit
@@ -50,6 +54,8 @@ echo -e "----Installed emacs----\n\n"
 
 ## Modifying the configurations
 mv /etc/httpd/conf.d/mod_security.conf /etc/httpd/conf.d/mod_security.conf.bak
+#/etc/init.d/httpd start
+#chkconfig httpd on
 systemctl start httpd #Replaced
 systemctl enable httpd #replaced
 echo -e "----Modified Mod Security----\n\n"
@@ -62,7 +68,7 @@ git clone $ENGINEAPITEMPLATES
 git clone $ENGINEAPIMODULES
 echo -e "----Installed engineAPI----\n\n"
 
-mkdir -p $SERVERURL/phpincludes/
+#mkdir -p $SERVERURL/phpincludes/
 #ln -s $GITDIR/engineAPITemplates/* $GITDIR/engineAPI/engine/template/ #creates symbolic link between all the template files
 ln -s $GITDIR/engineAPI-Modules/src/modules/* $GITDIR/engineAPI/engine/engineAPI/latest/modules/ #Creates symbolic link between the modules
 ln -s $GITDIR/engineAPI/engine/ $SERVERURL/phpincludes/ #All required modules are linked in phpincludes
@@ -83,3 +89,4 @@ ln -s /vagrant/serverConfiguration/httpd.conf /etc/httpd/conf/httpd.conf
 mkdir -p /vagrant/serverConfiguration/serverlogs
 touch /vagrant/serverConfiguration/serverlogs/error_log
 systemctl restart httpd
+#/etc/init.d/httpd restart
