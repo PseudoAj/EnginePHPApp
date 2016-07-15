@@ -19,3 +19,7 @@ A simple website that runs on top of engine CMS developed by WVU Libraries.
 1. `-p` in `mkdir`
   Used to recursively create the directory, example: `mkdir -p /tmp/a/b/c` will do: If /tmp/a exists but /tmp/a/b does not, mkdir will create /tmp/a/b before creating /tmp/a/b/c.
   --[Source](https://en.wikipedia.org/wiki/Mkdir)
+
+## References
+1. [Sitepoint-Migrate from the MySQL Extension to PDO](https://www.sitepoint.com/migrate-from-the-mysql-extension-to-pdo/)
+1. [PHP: mysql v mysqli v pdo](http://stackoverflow.com/questions/12097245/php-mysql-v-mysqli-v-pdo?rq=1)

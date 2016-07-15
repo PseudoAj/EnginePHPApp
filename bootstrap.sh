@@ -60,19 +60,12 @@ systemctl start httpd #Replaced
 systemctl enable httpd #replaced
 echo -e "----Modified Mod Security----\n\n"
 
-## Install engineAPI
+## Install engineAPI Templates and Modules
 mkdir -p $GITDIR
 cd $GITDIR
-git clone -b $ENGINEBRANCH $ENGINEAPIGIT
 git clone $ENGINEAPITEMPLATES
 git clone $ENGINEAPIMODULES
 echo -e "----Installed engineAPI----\n\n"
-
-#mkdir -p $SERVERURL/phpincludes/
-#ln -s $GITDIR/engineAPITemplates/* $GITDIR/engineAPI/engine/template/ #creates symbolic link between all the template files
-ln -s $GITDIR/engineAPI-Modules/src/modules/* $GITDIR/engineAPI/engine/engineAPI/latest/modules/ #Creates symbolic link between the modules
-ln -s $GITDIR/engineAPI/engine/ $SERVERURL/phpincludes/ #All required modules are linked in phpincludes
-echo -e "----Modules have been loaded----\n\n"
 
 #APP Specific
 ##Link your src folder
