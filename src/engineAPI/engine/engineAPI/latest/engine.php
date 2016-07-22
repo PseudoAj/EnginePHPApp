@@ -119,7 +119,7 @@ class EngineAPI{
 
 	# Module Template Mathes and function calls for displayTemplate()
 	###################################################################
-	
+
 	/**
 	 * Recursive counter for template renderer
 	 * In module template matches, prevent infinite recursion
@@ -178,10 +178,10 @@ class EngineAPI{
 
 		// This needs to be explicitly loaded so that onLoad.php's that call
 		// template information can be loaded correctly
-		// 
+		//
 		// @TODO -- we need a to handle priorities / dependencies. onload.php
 		// should wait until dependencies are filled before firing off. That would
-		// remove the requirement that the templates module be loaded manually. 
+		// remove the requirement that the templates module be loaded manually.
 		require_once self::$engineDir."/modules/templates/templates.php";
 
 		//Load helper function Modules
@@ -345,7 +345,7 @@ class EngineAPI{
 	/**
 	 * determines the server from $referer
 	 * @param $referer
-	 * @return string the server passed in via referer 
+	 * @return string the server passed in via referer
 	 */
 	private function getHTTP_REFERERServer($referer) {
 
@@ -366,7 +366,7 @@ class EngineAPI{
 	 * @return string
 	 */
 	public static function displayTemplate($content) {
-		
+
 		$engineVars = enginevars::getInstance()->export();
 
 		$engine     = EngineAPI::singleton();
@@ -417,12 +417,12 @@ class EngineAPI{
 				preg_match_all("/\{(.+?)(\s(.+?))?\}/",$line,$matches);
 				if (isset($matches[1]) && !is_empty($matches[1])) {
 					foreach ($matches[1] as $I=>$className) {
-						// This if check prevents modules that have been loaded but the 
+						// This if check prevents modules that have been loaded but the
 						// constructor hasn't been called from using tag replacements.
-						// Commented out until we figure out if its bad to have it commented out ... 
-						// The modules could get around this by using an onLoad.php, but i'd rather see it 
-						// all autoloaded. 
-						
+						// Commented out until we figure out if its bad to have it commented out ...
+						// The modules could get around this by using an onLoad.php, but i'd rather see it
+						// all autoloaded.
+
 						// if (!class_exists($className, FALSE)) {
 							$className = preg_replace("/[^a-zA-Z0-9_]/", "", $className);
 							try {
@@ -488,12 +488,12 @@ class EngineAPI{
 	}
 
 	/**
-	 * If $engineVars['replaceDoubleQuotes'] = TRUE, this method will replace double 
-	 * quote strings (two quotes, without any characters in between, example: "" ) with : 
+	 * If $engineVars['replaceDoubleQuotes'] = TRUE, this method will replace double
+	 * quote strings (two quotes, without any characters in between, example: "" ) with :
 	 * "$engineVars['replaceDQCharacter']"
 	 *
-	 * This prevents a bug in some browsers with "" in the header causes issues. 
-	 * 
+	 * This prevents a bug in some browsers with "" in the header causes issues.
+	 *
 	 * @param $matches
 	 * @return string
 	 */
@@ -506,7 +506,7 @@ class EngineAPI{
 
 	/**
 	 * callback to handle {engine .*} matches in templates
-	 * 
+	 *
 	 * @param $matches
 	 * @return bool|string
 	 */

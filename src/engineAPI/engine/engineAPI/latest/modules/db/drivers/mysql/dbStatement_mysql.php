@@ -323,4 +323,4 @@ class dbStatement_mysql extends dbStatement {
 
         return (FALSE !== ($output = unserialize($input))) ? $output : FALSE;
     }
-} 
+}
